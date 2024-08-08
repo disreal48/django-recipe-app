@@ -1,8 +1,9 @@
 from django.db import models
+from apps.core.abstracts.models import CreatedModifiedAbstract
 
 # Create your models here.
 
-class Recipe(models.Model):
+class Recipe(CreatedModifiedAbstract):
     name = models.CharField(max_length=50)
     ingredients = models.CharField(
         max_length=255, help_text="Enter ingredients comma separated"
