@@ -12,6 +12,8 @@ DEFAULT_APP = [
 ]
 CREATED_APP = [
     "apps.core.apps.CoreConfig",
+    #recipes-related apps
+    "apps.recipes",
 ]  # custom apps goe here
 
 THIRD_PARTY_APP = []  # third party apps goe here
