@@ -5,7 +5,6 @@ This is a Django-based recipe application. You can add, search for, edit or dele
 ## Table of Contents
 
 - [Setup](#setup)
-- [Using PostgreSQL](#using-postgresql)
 - [Using SQLite3](#using-sqlite3)
 - [Makefile Commands](#makefile-commands)
 
@@ -53,26 +52,6 @@ This is a Django-based recipe application. You can add, search for, edit or dele
    import secrets
    secrets.token_urlsafe(50)
    ```
-
-## Using PostgreSQL
-
-1. Set up PostgreSQL:
-
-   ```bash
-   psql -U postgres
-   CREATE ROLE <role-name> WITH PASSWORD '<password>';
-   ALTER ROLE <role-name> CREATEDB;
-   ALTER ROLE <role-name> LOGIN;
-   ```
-
-2. Create the database:
-
-   ```bash
-   \c postgres <role-name>
-   CREATE DATABASE <db-name>;
-   ```
-
-3. Fill in the database values in the `.env` file.
 
 ## Using SQLite3
 
