@@ -21,6 +21,9 @@ class Recipe(CreatedModifiedAbstract):
         return "Intermediate"
       else:
         return "Hard"
+    
+    def return_ingredients_as_list(self):
+        return self.ingredients.split(', ') if self.ingredients else []
 
     def __str__(self):
         return f"{self.name} - {self.difficulty} - {self.cooking_time}"
