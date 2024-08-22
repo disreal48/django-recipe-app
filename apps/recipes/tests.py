@@ -45,3 +45,7 @@ class RecipeModelTest(TestCase):
         recipe = Recipe.objects.get(id=1)
         cooking_time_value = recipe.cooking_time
         self.assertIsInstance(cooking_time_value, int)
+        
+    def test_get_absolute_url(self):
+        recipe = Recipe.objects.get(id=1)
+        self.assertEqual(recipe.get_absolute_url(), '/recipes/1/')

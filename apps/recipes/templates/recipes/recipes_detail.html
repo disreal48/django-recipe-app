@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="container mt-5">
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="{{object.pic.url}}"
+          class="img-fluid rounded-start"
+          alt="{{object.name}}"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{object.name}}</h5>
+          <p class="card-text"><b>Ingredients: </b> {{object.ingredients}}</p>
+          <p class="card-text">
+            <b>Cooking Time: </b> {{object.cooking_time}} minutes
+          </p>
+          <p class="card-text"><b>Difficulty: </b> {{object.difficulty}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
