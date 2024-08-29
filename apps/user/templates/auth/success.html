@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<div class="success-container">
+  <div class="success-card">
+    <h1 class="success-title">You’ve successfully logged out.</h1>
+    <a href="{% url 'user:login_view' %}" class="btn btn-primary"
+      >Log back in</a
+    >
+  </div>
+</div>
+{% endblock content %}
