@@ -14,6 +14,8 @@ CREATED_APP = [
     "apps.core.apps.CoreConfig",
     #recipes-related apps
     "apps.recipes",
+    #users-related apps
+    "apps.user",
 ]  # custom apps goe here
 
 THIRD_PARTY_APP = []  # third party apps goe here
@@ -80,3 +82,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT= BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_URL='/login/'
