@@ -1,10 +1,19 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-
 <div class="home-container">
-  <img
-    src="{% static 'recipes/images/home.jpg' %}"
-    alt="home"
-    class="home-image"
-  />
+  <div class="home-content">
+    <img
+      src="{% static 'recipes/images/home.jpg' %}"
+      alt="home"
+      class="home-image"
+    />
+    <div class="home-info">
+      <h1>Welcome to My Recipe App</h1>
+      <p>
+        Discover and share your favorite recipes with our community. Whether
+        you're a seasoned chef or just starting out, you'll find something
+        delicious to try.
+      </p>
+    </div>
+  </div>
 </div>
 {% endblock content %}
