@@ -196,3 +196,7 @@
   background-color: #2980b9;
   border-color: #2980b9;
 }
+
+.nav-link {
+  padding: 10px 15px;
+}
