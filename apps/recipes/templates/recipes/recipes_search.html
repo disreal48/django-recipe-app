@@ -1,0 +1,12 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<h1>Search for recipes</h1>
+
+<hr />
+<form action="" method="POST">
+  {% csrf_token %} {{form}} {% if recipes_df %} {{recipes_df|safe}} {% else %}
+  <h3>no data</h3>
+  {% endif %}
+  <button type="submit">search</button>
+</form>
+
+{% endblock content %}
