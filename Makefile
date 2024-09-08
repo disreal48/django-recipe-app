@@ -13,6 +13,6 @@ dev-shell-plus:
 dev-install:
 	pip install -r requirements/dev.txt
 dev-test:
-	python3 manage.py test --settings=config.settings.dev
+	python3 manage.py test --settings=config.settings.dev --verbosity=2
 dev-superuser:
 	python3.8 manage.py createsuperuser --settings=config.settings.dev

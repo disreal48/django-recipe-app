@@ -5,68 +5,79 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import RecipeSearchForm
 from django.db.models import Q
 import pandas as pd
+from .utils import get_chart
 
 
 def home(request):
-  return render(request, 'recipes/recipes_home.html')
+    return render(request, 'recipes/recipes_home.html')
 
 class RecipeListView(LoginRequiredMixin, ListView):
-  model = Recipe
-  template_name = 'recipes/recipes_list.html'
+    model = Recipe
+    template_name = 'recipes/recipes_list.html'
+    paginate_by = 10
+    ordering = ['name']
 
 class RecipeDetailView(LoginRequiredMixin, DetailView):
-  model = Recipe
-  template_name = 'recipes/recipes_detail.html'
+    model = Recipe
+    template_name = 'recipes/recipes_detail.html'
   
+
+
 
 def search_recipes(request):
-  form = RecipeSearchForm(request.POST or None)
-  recipes_df = None
-  chart = None
-  
-  if request.method =='POST':
-    recipe_name = request.POST.get('recipe_name')
-    cooking_time = request.POST.get('cooking_time')
-    difficulty = request.POST.get('difficulty')
-    chart_type = request.POST.get('chart_type')
-    
-    cooking_time = 0 if not cooking_time else cooking_time
-    recipe_name = "" if not recipe_name else recipe_name
-    difficulty = "" if not difficulty else difficulty   
-    
-    qs = Recipe.objects.filter(
-              Q(name=recipe_name)  
-              | Q(cooking_time=cooking_time)
-          )
-    
-    qs2 = [
-            recipe
-            for recipe in Recipe.objects.all()
-            if recipe.difficulty == difficulty
-        ]  
+    form = RecipeSearchForm(request.POST or None)
+    recipes_df = None
+    chart = None
 
-    qs3 = Recipe.objects.filter(pk__in={recipe.pk for recipe in qs2})
+    if form.is_valid():
+        if request.method == 'POST':
+            recipe_name = form.cleaned_data.get('recipe_name')
+            cooking_time = form.cleaned_data.get('cooking_time')
+            difficulty = form.cleaned_data.get('difficulty')
+            chart_type = form.cleaned_data.get('chart_type')
 
-    qs = (qs | qs3).distinct()
-    
-    if qs:
-      recipes_df = pd.DataFrame(qs.values("name", "cooking_time"))
-      recipes_df['difficulty'] = [recipe.difficulty for recipe in qs]
-      
+            query = Q()
+            if recipe_name:
+                query &= Q(name__icontains=recipe_name)
+            if cooking_time is not None:
+                query &= Q(cooking_time__lte=cooking_time)
+            if difficulty:
+                query &= Q(difficulty__icontains=difficulty)
 
-    print(recipes_df)
-    
-    recipes_df = recipes_df.to_html(index=False)
+            qs = Recipe.objects.filter(query)
+                
+            qs2 = [
+                recipe
+                for recipe in Recipe.objects.all()
+                if recipe.difficulty == difficulty
+            ]
 
-  
-  
-  
-  
-  
-  context={
-    'form': form,
-    'recipes_df': recipes_df,
-    # 'chart': chart
-  }
-  
-  return render(request, 'recipes/recipes_search.html', context)
+            qs3 = Recipe.objects.filter(pk__in={recipe.pk for recipe in qs2})
+
+            qs = (qs | qs3).distinct()
+
+            if qs.exists():
+                recipes_df = pd.DataFrame(qs.values("name", "cooking_time"))
+                recipes_df['difficulty'] = [recipe.difficulty for recipe in qs]
+
+                chart = get_chart(
+                    chart_type, 
+                    recipes_df, 
+                    labels=recipes_df["name"].values,
+                    x_label='Recipe Name',
+                    y_label='Cooking Time (minutes)'
+                )
+
+                recipes_df_html = recipes_df.to_html(index=False)
+
+                recipes_df_html = recipes_df_html.replace('<th>name</th>', '<th>Name</th>')
+                recipes_df_html = recipes_df_html.replace('<th>cooking_time</th>', '<th>Cooking Time</th>')
+                recipes_df_html = recipes_df_html.replace('<th>difficulty</th>', '<th>Difficulty</th>')
+
+                recipes_df = recipes_df_html
+
+    return render(request, 'recipes/recipes_search.html', {
+        'form': form,
+        'recipes_df': recipes_df,
+        'chart': chart
+    })

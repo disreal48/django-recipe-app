@@ -1,9 +1,9 @@
 from django import forms
 
 CHART__CHOICES = (        
-  ('bar', 'Bar chart'),    
-  ('pie', 'Pie chart'),
-  ('line', 'Line chart')
+  ('#1', 'Bar chart'),    
+  ('#2', 'Pie chart'),
+  ('#3', 'Line chart')
 )
 
 DIFFICULTY_CHOICES = (

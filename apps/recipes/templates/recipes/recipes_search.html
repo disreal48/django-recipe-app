@@ -1,12 +1,30 @@
 {% extends "base.html" %} {% load static %} {% block content %}
-<h1>Search for recipes</h1>
-
-<hr />
-<form action="" method="POST">
-  {% csrf_token %} {{form}} {% if recipes_df %} {{recipes_df|safe}} {% else %}
-  <h3>no data</h3>
+<div class="container mt-5">
+  <h1>Search for Recipes</h1>
+  <hr />
+  <form action="" method="POST" class="search-form">
+    {% csrf_token %}
+    <div class="form-group">
+      {{ form.recipe_name.label_tag }} {{ form.recipe_name }}
+    </div>
+    <div class="form-group">
+      {{ form.cooking_time.label_tag }} {{ form.cooking_time }}
+    </div>
+    <div class="form-group">
+      {{ form.difficulty.label_tag }} {{ form.difficulty }}
+    </div>
+    <div class="form-group">
+      {{ form.chart_type.label_tag }} {{ form.chart_type }}
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <br />
+  {% if recipes_df %}
+  <div class="results-table">{{ recipes_df|safe }}</div>
+  <br />
+  <img src="data:image/png;base64, {{ chart|safe }}" class="chart-img" />
+  {% else %}
+  <p>No data available</p>
   {% endif %}
-  <button type="submit">search</button>
-</form>
-
+</div>
 {% endblock content %}
