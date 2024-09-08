@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm    
 
+def error_view(request):
+    return render(request, 'auth/error.html')
 
 def login_view(request):
     error_message = None

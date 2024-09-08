@@ -6,7 +6,7 @@ class LoginRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated and not request.path.startswith(reverse('user:login_view')):
-            return redirect(f"{reverse('user:login_view')}?next={request.path}")
         response = self.get_response(request)
+        if response.status_code == 404:
+            return redirect(reverse('user:error'))
         return response
