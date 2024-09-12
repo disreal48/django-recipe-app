@@ -29,9 +29,8 @@ DEBUG = env.bool("DEBUG")
 
 MIDDLEWARE = MIDDLEWARE + ["whitenoise.middleware.WhiteNoiseMiddleware"]
 INSTALLED_APPS = [
-  'cloudinary_storage',
-  'django.contrib.staticfiles',
-  'cloudinary',
+    'cloudinary_storage',
+    'cloudinary',
 ] + INSTALLED_APPS 
 
 CSRF_COOKIE_SECURE = True
