@@ -11,7 +11,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://localhost",
     "https://127.0.0.1",
     "https://0.0.0.0",
-    "https://mysterious-brushlands-76647.herokuapp.com",
+    "https://mysterious-brushlands-76647-e7f429a2f34e.herokuapp.com/",
 ]
 
 env = environ.Env(DEBUG=(bool, True))
