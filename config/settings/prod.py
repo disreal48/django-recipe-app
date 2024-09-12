@@ -1,6 +1,5 @@
 import environ
 import os
-import dj_database_url
 from .base import *
 import cloudinary
 import cloudinary.uploader
@@ -49,17 +48,16 @@ import django_on_heroku
 django_on_heroku.settings(locals())
 
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+# Heroku: Update database configuration from $DATABASE_URL.
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-DATABASE_URL="sqlite://db.sqlite3"
+import dj_database_url
+DATABASE_URL = env.str("DATABASE_URL")
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# import django_on_heroku
+
+# django_on_heroku.settings(locals())
