@@ -23,5 +23,5 @@ prod-install:
 	pip install -r requirements/prod.txt
 prod-startapp:
 	cd apps && python3 ../manage.py startapp $(app) --settings=recipe_project.settings.prod
-prod-static:
-	python3 manage.py collectstatic --settings=recipe_project.settings.prod
+# prod-static:
+# 	python3 manage.py collectstatic --settings=recipe_project.settings.prod
