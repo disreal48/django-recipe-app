@@ -25,6 +25,8 @@ prod-startapp:
 	cd apps && python3 ../manage.py startapp $(app) --settings=config.settings.prod
 prod-migrate:
 	python3 manage.py migrate --settings=config.settings.prod
+prod-makemigrations:
+	python3 manage.py makemigrations --settings=config.settings.prod
 prod-superuser:
 	python3 manage.py createsuperuser --settings=config.settings.prod
 prod-static:
