@@ -27,7 +27,7 @@ cloudinary.config(
 SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
 
-MIDDLEWARE = ["whitenoise.middleware.WhiteNoiseMiddleware"] + MIDDLEWARE
+MIDDLEWARE = MIDDLEWARE + ["whitenoise.middleware.WhiteNoiseMiddleware"]
 INSTALLED_APPS = [
   'cloudinary_storage',
   'django.contrib.staticfiles',
