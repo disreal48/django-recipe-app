@@ -18,10 +18,12 @@ dev-superuser:
 	python3.8 manage.py createsuperuser --settings=config.settings.dev
 
 prod-start:
-	python3 manage.py runserver --settings=recipe_project.settings.prod
+	python3 manage.py runserver --settings=config.settings.prod
 prod-install:
 	pip install -r requirements/prod.txt
 prod-startapp:
-	cd apps && python3 ../manage.py startapp $(app) --settings=recipe_project.settings.prod
+	cd apps && python3 ../manage.py startapp $(app) --settings=config.settings.prod
+prod-migrate:
+	python3 manage.py migrate --settings=config.settings.prod
 # prod-static:
 # 	python3 manage.py collectstatic --settings=recipe_project.settings.prod
