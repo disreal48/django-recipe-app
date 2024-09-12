@@ -6,7 +6,7 @@ import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 
-ALLOWED_HOSTS = ["https://mysterious-brushlands-76647.herokuapp.com", ".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0"]
 CSRF_TRUSTED_ORIGINS = [
     "https://localhost",
     "https://127.0.0.1",
