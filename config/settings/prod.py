@@ -59,7 +59,7 @@ django_on_heroku.settings(locals())
 #     }
 # }
 
-DATABASE_URL="db.sqlite3"
+DATABASE_URL="sqlite://db.sqlite3"
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
 }
