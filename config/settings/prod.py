@@ -14,7 +14,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://mysterious-brushlands-76647.herokuapp.com",
 ]
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env(str(BASE_DIR / ".env_prod"))
 
 # Configuration       
