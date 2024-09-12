@@ -6,6 +6,9 @@ import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 
+env = environ.Env(DEBUG=(bool, True))
+environ.Env.read_env(str(BASE_DIR / ".env_prod"))
+
 # Configuration       
 cloudinary.config( 
     cloud_name = env.str("CLOUD_NAME"), 
@@ -13,10 +16,6 @@ cloudinary.config(
     api_secret = env.str("api_secret"),
     secure=True
 )
-
-env = environ.Env(DEBUG=(bool, True))
-environ.Env.read_env(str(BASE_DIR / ".env_prod"))
-
 SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
 
