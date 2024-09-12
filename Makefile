@@ -27,5 +27,5 @@ prod-migrate:
 	python3 manage.py migrate --settings=config.settings.prod
 prod-superuser:
 	python3.8 manage.py createsuperuser --settings=config.settings.prod
-# prod-static:
-# 	python3 manage.py collectstatic --settings=recipe_project.settings.prod
+prod-static:
+	python3 manage.py collectstatic --settings=config.settings.prod
