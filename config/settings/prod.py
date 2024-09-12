@@ -6,6 +6,14 @@ import cloudinary
 import cloudinary.uploader
 from cloudinary.utils import cloudinary_url
 
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://localhost",
+    "https://127.0.0.1",
+    "https://0.0.0.0",
+    "https://mysterious-brushlands-76647.herokuapp.com",
+]
+
 env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env(str(BASE_DIR / ".env_prod"))
 
@@ -18,14 +26,6 @@ cloudinary.config(
 )
 SECRET_KEY = env.str("SECRET_KEY")
 DEBUG = env.bool("DEBUG")
-
-ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1", "0.0.0.0"]
-CSRF_TRUSTED_ORIGINS = [
-    "https://localhost",
-    "https://127.0.0.1",
-    "https://0.0.0.0",
-    "https://mysterious-brushlands-76647.herokuapp.com",
-]
 
 MIDDLEWARE = ["whitenoise.middleware.WhiteNoiseMiddleware"] + MIDDLEWARE
 INSTALLED_APPS = [
