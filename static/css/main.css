@@ -299,3 +299,20 @@ img {
   color: #333;
   margin-bottom: 20px;
 }
+
+/* Footer Styles */
+.page-footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.page-footer a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.page-footer a:hover {
+  text-decoration: underline;
+}
